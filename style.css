@@ -29,18 +29,18 @@ body {
   }
   
   .correct {
-    background-color: #4CAF50;
+    background-color: #66c669;
     color: white;
   }
   
   .wrong {
-    background-color: #f44336;
+    background-color: #bb170b;
     color: white;
   }
   
   #nextBtn {
     display: none;
-    background: #333;
+    background: hsl(244, 50%, 25%);
     color: white;
   }
   
@@ -50,6 +50,82 @@ body {
 
   #restartBtn {
     display: none;
-    background: #007BFF;
+    background: #0b3664;
     color: white;
+  }
+
+  .logo {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 250px; 
+  }
+
+  .logo {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .logo:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
+
+  #theme {
+    color: #201e63;
+   font-weight: bold;
+    text-align: center;
+    font-size: 28px;
+    margin-top: 50px;
+  }
+  
+
+  .progress-container {
+    width: 37%;
+    height: 10px;
+    background: #ddd;
+    margin: 10px auto;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  #progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #3d9b40;
+    transition: 0.3s;
+  }
+  
+  #progress-text {
+    font-size: 14px;
+    color: #555;
+  }
+
+  #score {
+    white-space: pre-line;
+  }
+
+  .good {
+    color: #4CAF50;
+  }
+  
+  .medium {
+    color: #FFC107;
+  }
+  
+  .bad {
+    color: #f44336;
+  }
+
+  #confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
   }

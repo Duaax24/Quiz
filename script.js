@@ -1,13 +1,16 @@
+const progressBar = document.getElementById("progress-bar");
+const progressText = document.getElementById("progress-text");
+
 const quiz = [
   {
-    question: "Was ist die beste Stadt in Deutschland?",
-    answers: ["Berlin", "München", "Hamburg"],
+    question: "Was ist die coolste Stadt in Deutschland?",
+    answers: ["Berlin", "bremen", "Hamburg"],
     correct: 0
   },
   {
-    question: "Wie nervig ist juliannn.",
+    question: "Wie nervig ist juliannn",
     answers: [
-      "sehrrrrrrrr nervig",
+      "sehrrrrrrrr ",
       "sehr ",
       "richtig nervig "
     ],
@@ -36,6 +39,11 @@ function loadQuestion() {
 
   const q = quiz[currentQuestion];
   questionEl.innerText = q.question;
+
+  // ✅ Fortschritt updaten
+  let progressPercent = (currentQuestion / quiz.length) * 100;
+  progressBar.style.width = progressPercent + "%";
+  progressText.innerText = "Frage " + (currentQuestion + 1) + " von " + quiz.length;
 
   answersEl.innerHTML = "";
 
@@ -75,10 +83,30 @@ nextBtn.addEventListener("click", () => {
   if (currentQuestion < quiz.length) {
     loadQuestion();
   } else {
-    questionEl.innerText = "Quiz beendet!";
+    questionEl.innerText = "";
     answersEl.innerHTML = "";
     nextBtn.style.display = "none";
-    scoreEl.innerText = "Dein Score: " + score + " / " + quiz.length;
+    let message = "";
+scoreEl.className = ""; // reset
+
+if (score === quiz.length) {
+    message = "🎉 Herzlichen Glückwunsch! Volle Punktzahl!";
+    scoreEl.classList.add("good");
+  
+    createConfetti();
+    drawConfetti();
+  } else if (score >= quiz.length / 2) {
+  message = "knapppp";
+  scoreEl.classList.add("medium");
+} else {
+  message = "versuch’s nochmal";
+  scoreEl.classList.add("bad");
+}
+
+scoreEl.innerText = message + "\nDein Score: " + score + " / " + quiz.length;
+    // ✅ Fortschritt auf 100%
+    progressBar.style.width = "100%";
+    progressText.innerText = "Fertig!";
 
     restartBtn.style.display = "block";
   }
@@ -95,3 +123,42 @@ restartBtn.addEventListener("click", () => {
 
 // Start
 loadQuestion();
+
+const canvas = document.getElementById("confetti-canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let confetti = [];
+
+function createConfetti() {
+  for (let i = 0; i < 150; i++) {
+    confetti.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 2,
+      d: Math.random() * 5 + 2,
+      color: "hsl(" + Math.random() * 360 + ", 100%, 50%)"
+    });
+  }
+}
+
+function drawConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  confetti.forEach((c, i) => {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fillStyle = c.color;
+    ctx.fill();
+
+    c.y += c.d;
+
+    if (c.y > canvas.height) {
+      confetti.splice(i, 1);
+    }
+  });
+
+  requestAnimationFrame(drawConfetti);
+}

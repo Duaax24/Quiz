@@ -5,19 +5,32 @@
   <title>Klassisches Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="quiz-container">
-  <h2 id="question">Frage kommt hier</h2>
+  <!-- Logo (besser hier statt im <head>) -->
+  <img src="logo.png" class="logo">
 
-  <div id="answers"></div>
+  <h1 id="theme">Thema: .....</h1>
 
-  <button id="nextBtn">Weiter</button>
+  <div class="progress-container">
+    <div id="progress-bar"></div>
+  </div>
 
-  <h3 id="score"></h3>
-  <button id="restartBtn">Nochmal spielen</button>
-</div>
+  <p id="progress-text"></p>
 
-<script src="script.js"></script>
+  <div class="quiz-container">
+    <h2 id="question">Frage kommt hier</h2>
+    <div id="answers"></div>
+    <button id="nextBtn">Weiter</button>
+    <h3 id="score"></h3>
+    <button id="restartBtn">Nochmal spielen</button>
+  </div>
+
+  <!-- ✅ WICHTIG: Canvas ganz am Ende + korrekt positioniert -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
