@@ -40,7 +40,7 @@ function loadQuestion() {
   const q = quiz[currentQuestion];
   questionEl.innerText = q.question;
 
-  // ✅ Fortschritt updaten
+  // Fortschritt updaten
   let progressPercent = (currentQuestion / quiz.length) * 100;
   progressBar.style.width = progressPercent + "%";
   progressText.innerText = "Frage " + (currentQuestion + 1) + " von " + quiz.length;
@@ -104,7 +104,7 @@ if (score === quiz.length) {
 }
 
 scoreEl.innerText = message + "\nDein Score: " + score + " / " + quiz.length;
-    // ✅ Fortschritt auf 100%
+    // Fortschritt auf 100%
     progressBar.style.width = "100%";
     progressText.innerText = "Fertig!";
 
