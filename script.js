@@ -192,3 +192,5 @@ async function loadLeaderboard() {
 
   document.getElementById("leaderboard").innerHTML = html;
 }
+
+loadLeaderboard(); 
