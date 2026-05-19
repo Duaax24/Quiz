@@ -8,11 +8,11 @@ const quiz = [
     correct: 0
   },
   {
-    question: "Wie nervig ist juliannn",
+    question: "Wie nervig ist juliannn (aka Juliii) ",
     answers: [
       "sehrrrrrrrr ",
       "sehr ",
-      "richtig nervig "
+      "etwas "
     ],
     correct: 0
   },
@@ -109,6 +109,10 @@ scoreEl.innerText = message + "\nDein Score: " + score + " / " + quiz.length;
     progressText.innerText = "Fertig!";
 
     restartBtn.style.display = "block";
+    const username = prompt("Wie heißt du?");
+
+saveScore(username, score);
+loadLeaderboard();
   }
 });
 
@@ -161,4 +165,30 @@ function drawConfetti() {
   });
 
   requestAnimationFrame(drawConfetti);
+}
+async function saveScore(name, score) {
+  await fetch("DEINE-RAILWAY-URL/score", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      score: score
+    })
+  });
+}
+
+async function loadLeaderboard() {
+  const response = await fetch("   /leaderboard");
+
+  const data = await response.json();
+
+  let html = "<h3>🏆 Ranking</h3>";
+
+  data.forEach((player, index) => {
+    html += `<p>#${index + 1} ${player.name}: ${player.score}</p>`;
+  });
+
+  document.getElementById("leaderboard").innerHTML = html;
 }
