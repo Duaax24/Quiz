@@ -112,7 +112,7 @@ scoreEl.innerText = message + "\nDein Score: " + score + " / " + quiz.length;
     const username = prompt("Name eingeben");
 
     await saveScore(username, score);
-    loadLeaderboard();
+    loadLeaderboard(username);
   }
 });
 
@@ -179,18 +179,36 @@ async function saveScore(name, score) {
   });
 }
 
-async function loadLeaderboard() {
+async function loadLeaderboard(currentUser) {
+
   const response = await fetch("https://quiz-backend-production-81ed.up.railway.app/leaderboard");
 
   const data = await response.json();
 
-  let html = "<h3>🏆 Ranking</h3>";
+  let html = "<h2> Ranking</h2>";
 
   data.forEach((player, index) => {
-    html += `<p>#${index + 1} ${player.name}: ${player.score}</p>`;
+
+    if (player.name === currentUser) {
+      html += `
+        <p style="
+          background: gold;
+          padding: 10px;
+          border-radius: 10px;
+          font-weight: bold;
+        ">
+          #${index + 1} ${player.name} ⭐ : ${player.score}
+        </p>
+      `;
+    } else {
+      html += `
+        <p>
+          #${index + 1} ${player.name}: ${player.score}
+        </p>
+      `;
+    }
+
   });
 
   document.getElementById("leaderboard").innerHTML = html;
 }
-
-loadLeaderboard(); 
