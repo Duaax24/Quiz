@@ -109,7 +109,7 @@ scoreEl.innerText = message + "\nDein Score: " + score + " / " + quiz.length;
     progressText.innerText = "Fertig!";
 
     restartBtn.style.display = "block";
-    const username = prompt("Wie heißt du?");
+    const username = prompt("Name eingeben");
 
 saveScore(username, score);
 loadLeaderboard();
@@ -167,7 +167,7 @@ function drawConfetti() {
   requestAnimationFrame(drawConfetti);
 }
 async function saveScore(name, score) {
-  await fetch("DEINE-RAILWAY-URL/score", {
+  await fetch("https://quiz-backend-production-81ed.up.railway.app/score", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -180,7 +180,7 @@ async function saveScore(name, score) {
 }
 
 async function loadLeaderboard() {
-  const response = await fetch("   /leaderboard");
+  const response = await fetch("https://quiz-backend-production-81ed.up.railway.app/leaderboard");
 
   const data = await response.json();
 
