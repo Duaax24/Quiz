@@ -77,7 +77,7 @@ function loadQuestion() {
   });
 }
 
-nextBtn.addEventListener("click", () => {
+nextBtn.addEventListener("click", async () => {
   currentQuestion++;
 
   if (currentQuestion < quiz.length) {
@@ -111,8 +111,8 @@ scoreEl.innerText = message + "\nDein Score: " + score + " / " + quiz.length;
     restartBtn.style.display = "block";
     const username = prompt("Name eingeben");
 
-saveScore(username, score);
-loadLeaderboard();
+    await saveScore(username, score);
+    loadLeaderboard();
   }
 });
 
