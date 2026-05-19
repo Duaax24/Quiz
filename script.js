@@ -122,6 +122,7 @@ restartBtn.addEventListener("click", () => {
   scoreEl.innerText = "";
   restartBtn.style.display = "none";
 
+  document.getElementById("leaderboard").innerHTML = "";
   loadQuestion();
 });
 
@@ -197,7 +198,7 @@ async function loadLeaderboard(currentUser) {
           border-radius: 10px;
           font-weight: bold;
         ">
-          #${index + 1} ${player.name} ⭐ : ${player.score}
+          #${index + 1} ${player.name}  : ${player.score}
         </p>
       `;
     } else {

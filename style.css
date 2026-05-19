@@ -141,3 +141,13 @@ body {
   border-radius: 8px;
   margin: 5px 0;
 }
+
+.correct {
+  background-color: #4CAF50 !important;
+  color: white;
+}
+
+.wrong {
+  background-color: #f44336 !important;
+  color: white;
+}
